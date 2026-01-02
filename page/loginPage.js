@@ -1,18 +1,20 @@
 class LoginPage {
-    constructor(page) {
-      this.page = page;
-    }
-  
-    async goto() {
-      await this.page.goto('https://www.saucedemo.com/');
-    }
-  
-    async login(username, password) {
-      await this.page.fill('#user-name', username);
-      await this.page.fill('#password', password);
-      await this.page.click('#login-button');
-    }
+  constructor(page) {
+    this.page = page;
+    this.usernameInput = page.locator('#user-name');
+    this.passwordInput = page.locator('#password');
+    this.loginBtn = page.locator('#login-button');
   }
-  
-  module.exports = { LoginPage };
-  
+
+  async goto() {
+    await this.page.goto('https://www.saucedemo.com/');
+  }
+
+  async login(username, password) {
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.loginBtn.click();
+  }
+}
+
+module.exports = { LoginPage };
