@@ -7,7 +7,6 @@ test('saucedemo valid login', async ({ page }) => {
   const products = new ProductsPage(page);
 
   await login.goto();
-
   await login.login('standard_user', 'secret_sauce');
 
   expect(await products.isAt()).toBeTruthy();
