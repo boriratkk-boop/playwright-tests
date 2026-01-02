@@ -26,9 +26,10 @@ jobs:
         name: screenshots
         path: screenshots/
 
-    - name: Upload video
+    - name: Upload videos
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: videos
         path: test-results/
+
