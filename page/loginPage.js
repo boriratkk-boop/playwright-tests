@@ -1,22 +1,21 @@
+const { takeScreenshot } = require('./screenshotHelper');
+
 class LoginPage {
-  constructor(page) {
+  constructor(page, testName) {
     this.page = page;
-    this.username = page.locator('#user-name');
-    this.password = page.locator('#password');
-    this.loginBtn = page.locator('#login-button');
+    this.testName = testName;
   }
 
   async open() {
     await this.page.goto('https://www.saucedemo.com/');
-    await this.page.screenshot({ path: 'screenshots/01-login-page.png' });
+    await takeScreenshot(this.page, this.testName, 'step1-login-page');
   }
 
-  async login(user, pass) {
-    await this.username.fill(user);
-    await this.password.fill(pass);
-    await this.page.screenshot({ path: 'screenshots/02-fill-credentials.png' });
-    await this.loginBtn.click();
-    await this.page.screenshot({ path: 'screenshots/03-after-login.png' });
+  async login(username, password) {
+    await this.page.fill('#user-name', username);
+    await this.page.fill('#password', password);
+    await this.page.click('#login-button');
+    await takeScreenshot(this.page, this.testName, 'step2-after-login');
   }
 }
 

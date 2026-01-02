@@ -1,18 +1,19 @@
+const { takeScreenshot } = require('./screenshotHelper');
+
 class ProductsPage {
-  constructor(page) {
+  constructor(page, testName) {
     this.page = page;
-    this.addBackpack = page.locator('#add-to-cart-sauce-labs-backpack');
-    this.cartIcon = page.locator('.shopping_cart_link');
+    this.testName = testName;
   }
 
-  async addItem() {
-    await this.addBackpack.click();
-    await this.page.screenshot({ path: 'screenshots/04-add-to-cart.png' });
+  async addBackpackToCart() {
+    await this.page.click('#add-to-cart-sauce-labs-backpack');
+    await takeScreenshot(this.page, this.testName, 'step3-add-to-cart');
   }
 
-  async openCart() {
-    await this.cartIcon.click();
-    await this.page.screenshot({ path: 'screenshots/05-open-cart.png' });
+  async goToCart() {
+    await this.page.click('.shopping_cart_link');
+    await takeScreenshot(this.page, this.testName, 'step4-open-cart');
   }
 }
 

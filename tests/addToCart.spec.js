@@ -3,18 +3,21 @@ const { LoginPage } = require('../page/loginPage');
 const { ProductsPage } = require('../page/productsPage');
 const { CartPage } = require('../page/cartPage');
 
-test('Add to cart with screenshots and video', async ({ page }) => {
-  const login = new LoginPage(page);
-  const products = new ProductsPage(page);
-  const cart = new CartPage(page);
+test('Add to cart test', async ({ page }, testInfo) => {
+  const testName = testInfo.title;
+
+  const login = new LoginPage(page, testName);
+  const products = new ProductsPage(page, testName);
+  const cart = new CartPage(page, testName);
 
   await login.open();
   await login.login('standard_user', 'secret_sauce');
 
-  await products.addItem();
-  await products.openCart();
+  await products.addBackpackToCart();
+  await products.goToCart();
 
   await cart.verifyItem();
+
   await expect(page.locator('.inventory_item_name'))
-    .toHaveText('Sauce Labs Backpack');
+    .toContainText('Sauce Labs Backpack');
 });

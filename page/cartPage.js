@@ -1,12 +1,14 @@
+const { takeScreenshot } = require('./screenshotHelper');
+
 class CartPage {
-  constructor(page) {
+  constructor(page, testName) {
     this.page = page;
-    this.cartItem = page.locator('.cart_item');
+    this.testName = testName;
   }
 
   async verifyItem() {
-    await this.cartItem.first().waitFor();
-    await this.page.screenshot({ path: 'screenshots/06-item-in-cart.png' });
+    await this.page.locator('.cart_item').first().waitFor();
+    await takeScreenshot(this.page, this.testName, 'step5-item-in-cart');
   }
 }
 
