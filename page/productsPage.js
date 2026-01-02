@@ -1,20 +1,11 @@
-const { expect } = require('@playwright/test');
-
 class ProductsPage {
   constructor(page) {
     this.page = page;
+    this.title = page.locator('.title');
   }
 
-  async verifyPage() {
-    await expect(this.page.locator('.title')).toHaveText('Products');
-  }
-
-  async addFirstProductToCart() {
-    await this.page.click('.inventory_item:first-child button');
-  }
-
-  async goToCart() {
-    await this.page.click('.shopping_cart_link');
+  async isAt() {
+    return await this.title.isVisible();
   }
 }
 
