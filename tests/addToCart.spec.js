@@ -1,7 +1,8 @@
 const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../pages/loginPage');
-const { ProductsPage } = require('../pages/productsPage');
-const { CartPage } = require('../pages/cartPage');
+const { LoginPage } = require('../page/loginPage');
+const { ProductsPage } = require('../page/productsPage');
+const { CartPage } = require('../page/cartPage');
+
 
 test('Add to cart with screenshots each step', async ({ page }) => {
   const login = new LoginPage(page);
@@ -18,3 +19,4 @@ test('Add to cart with screenshots each step', async ({ page }) => {
 
   await expect(page.locator('.cart_item')).toBeVisible();
 });
+
