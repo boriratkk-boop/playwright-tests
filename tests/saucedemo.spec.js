@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../pages/loginPage');
-const { ProductsPage } = require('../pages/productsPage');
+const { LoginPage } = require('../page/loginPage');
+const { ProductsPage } = require('../page/productsPage');
 
 test('saucedemo valid login', async ({ page }) => {
   const login = new LoginPage(page);
@@ -11,3 +11,4 @@ test('saucedemo valid login', async ({ page }) => {
 
   expect(await products.isAt()).toBeTruthy();
 });
+
